@@ -2,11 +2,14 @@ package config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import jakarta.persistence.EntityManagerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
@@ -38,7 +41,18 @@ public class DatabaseConfig {
 
         return new HikariDataSource(hc);
     }
-    
+
+    @Bean(name= {"entityManagerFactory"})
+    public EntityManagerFactory entityManagerFactory() {
+        log.info("Starting entityManagerFactory()");
+        LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
+        factory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        factory.setPackagesToScan(""); //todo: field from database properties class
+        factory.setDataSource(this.dataSource());
+        factory.setJpaPropertyMap(null); //todo: properties bean
+        factory.afterPropertiesSet();
+        return factory.getObject();
+    }
 
 
 
