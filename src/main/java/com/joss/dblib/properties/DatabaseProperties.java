@@ -1,4 +1,4 @@
-package properties;
+package com.joss.dblib.properties;
 
 import lombok.Generated;
 import org.springframework.boot.context.properties.ConfigurationProperties;

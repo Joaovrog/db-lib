@@ -1,4 +1,4 @@
-package config;
+package com.joss.dblib.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -16,7 +16,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import properties.DatabaseProperties;
+import com.joss.dblib.properties.DatabaseProperties;
 
 import javax.sql.DataSource;
 import java.util.HashMap;
