@@ -1,8 +1,3 @@
 spring:
   application:
     name: dblib
-
-database:
-  config:
-    base:
-    properties:
